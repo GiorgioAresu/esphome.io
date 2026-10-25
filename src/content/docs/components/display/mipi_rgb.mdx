@@ -65,8 +65,8 @@ lines, so the SPI bus must declare those pins with `allow_other_uses`:
 esp32:
   framework:
     type: esp-idf
-    sdkconfig_options:
-      CONFIG_ESP32S3_DATA_CACHE_LINE_64B: y
+    advanced:
+      flash_chip: generic
       
 psram:
   mode: octal
@@ -85,6 +85,18 @@ display:
   - platform: mipi_rgb
     model: ZX3D95CE01S-TR-4848
     id: my_display
+
+output:
+  - platform: ledc
+    pin: 5
+    id: backlight_led
+    frequency: 5kHz
+
+light:
+  - platform: monochromatic
+    output: backlight_led
+    name: Backlight
+    restore_mode: ALWAYS_ON
 ```
 
 ## Usage
