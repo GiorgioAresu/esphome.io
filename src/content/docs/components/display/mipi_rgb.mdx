@@ -85,7 +85,7 @@ display:
   - platform: mipi_rgb
     model: ZX3D95CE01S-TR-4848
     id: my_display
-
+    
 output:
   - platform: ledc
     pin: 5
@@ -96,7 +96,24 @@ light:
   - platform: monochromatic
     output: backlight_led
     name: Backlight
+    id: backlight
     restore_mode: ALWAYS_ON
+
+i2c:
+  sda: 15
+  scl: 6
+  scan: true
+  frequency: 400kHz
+    
+touchscreen:
+  - platform: ft63x6
+    interrupt_pin: 4
+    id: my_touchscreen
+    calibration:
+      x_min: 0
+      x_max: 480
+      y_min: 0
+      y_max: 480
 ```
 
 ## Usage
