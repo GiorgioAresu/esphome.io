@@ -62,19 +62,6 @@ The `ZX3D95CE01S-TR-4848` shares GPIO45 and GPIO48 between the SPI bus used to s
 lines, so the SPI bus must declare those pins with `allow_other_uses`:
 
 ```yaml
-esp32:
-  board: esp32-s3-devkitc-1
-  flash_size: 16MB
-  framework:
-    type: esp-idf
-    advanced:
-      flash_chip: generic
-      execute_from_psram: true
-
-psram:
-  mode: octal
-  speed: 80MHz
-
 spi:
   clk_pin:
     number: 45
@@ -88,35 +75,6 @@ display:
   - platform: mipi_rgb
     model: ZX3D95CE01S-TR-4848
     id: my_display
-    
-output:
-  - platform: ledc
-    pin: 5
-    id: backlight_led
-    frequency: 5kHz
-
-light:
-  - platform: monochromatic
-    output: backlight_led
-    name: Backlight
-    id: backlight
-    restore_mode: ALWAYS_ON
-
-i2c:
-  sda: 15
-  scl: 6
-  scan: true
-  frequency: 400kHz
-    
-touchscreen:
-  - platform: ft63x6
-    interrupt_pin: 4
-    id: my_touchscreen
-    calibration:
-      x_min: 0
-      x_max: 480
-      y_min: 0
-      y_max: 480
 ```
 
 ## Usage
